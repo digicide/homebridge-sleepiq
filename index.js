@@ -27,7 +27,7 @@ class SleepNumberPlatform {
 	this.accessories = new Map();
 	this.snapi = new snapi(this.username, this.password);
 	this.hasFoundation = false;
-	this.sessionDuration = (config["sessionDuration"] || 12 * 60 * 60) * 1000;
+	this.sessionDuration = (config["sessionDuration"] || 30 * 60) * 1000;
 	if (api) {
 	    this.api = api;
 
