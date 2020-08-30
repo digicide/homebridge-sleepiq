@@ -27,6 +27,7 @@ class SleepNumberPlatform {
 	this.accessories = new Map();
 	this.snapi = new snapi(this.username, this.password);
 	this.hasFoundation = false;
+	this.sessionDuration = (config["sessionDuration"] || 12 * 60 * 60) * 1000;
 	if (api) {
 	    this.api = api;
 
@@ -51,7 +52,9 @@ class SleepNumberPlatform {
 	        if (err) {
 		    this.log.debug(data, err);
 	        } else {
-		    this.log.debug("Login result:", data);
+			this.log.debug("Login result:", data);
+			setTimeout(() => this.authenticate(), this.sessionDuration);
+			this.log.debug("Will reauthenticate in " + this.sessionDuration/1000 + " seconds");
 	        }
 	    });
         } catch(err) {
